@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Love Story ❤️</title>
+
+<script type="module"
+src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+</script>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+  font-family:Arial,sans-serif;
+  background:#08030a;
+  color:white;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px 18px;
+  position:relative;
+  background:
+    radial-gradient(circle at 50% 35%,#4b173c 0%,#180817 38%,#08030a 75%);
+}
+
+.heart{
+  font-size:55px;
+  animation:beat 1.5s infinite;
+}
+
+@keyframes beat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.15)}
+}
+
+h1{
+  font-size:clamp(34px,9vw,65px);
+  margin:15px 0 8px;
+  letter-spacing:1px;
+}
+
+.subtitle{
+  font-size:17px;
+  opacity:.8;
+  margin-bottom:25px;
+}
+
+.viewer{
+  width:100%;
+  max-width:650px;
+  height:58vh;
+  min-height:400px;
+  border-radius:28px;
+  overflow:hidden;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 20px 70px rgba(0,0,0,.55);
+}
+
+model-viewer{
+  width:100%;
+  height:100%;
+  background:transparent;
+}
+
+.hint{
+  margin-top:15px;
+  font-size:14px;
+  opacity:.65;
+}
+
+.message{
+  max-width:650px;
+  margin:35px auto 0;
+  padding:25px;
+  border-radius:22px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+}
+
+.message h2{
+  margin-top:0;
+}
+
+.message p{
+  line-height:1.7;
+  opacity:.85;
+}
+
+@media(max-width:600px){
+  .viewer{
+    height:55vh;
+    min-height:350px;
+    border-radius:22px;
+  }
+
+  h1{
+    font-size:40px;
+  }
+}
+</style>
+
+<style id="couple3d-love-style">
+/* COUPLE3D_LOVE_MESSAGES */
+.love-section {
+  width: min(100% - 28px, 900px);
+  margin: 48px auto;
+  color: #fff4f8;
+  font-family: inherit;
+}
+.love-heading {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.love-heading h2 {
+  font-size: clamp(24px, 5vw, 36px);
+  margin: 0 0 10px;
+  color: #ffd0e2;
+}
+.love-heading p {
+  line-height: 1.8;
+  opacity: .85;
+}
+.love-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.love-card {
+  position: relative;
+  padding: 20px 17px;
+  border: 1px solid rgba(255, 180, 210, .35);
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(111, 30, 75, .48), rgba(35, 20, 49, .76));
+  box-shadow: 0 12px 32px rgba(0,0,0,.2);
+}
+.love-card:nth-child(even) { transform: translateY(15px); }
+.love-card .love-number {
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #ffc1da;
+}
+.love-card h3 {
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 9px 0 12px;
+}
+.love-card button {
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 30px;
+  padding: 10px 15px;
+  background: #9d356c;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+.love-message {
+  display: none;
+  line-height: 1.95;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+  margin-top: 15px;
+}
+.love-card.open .love-message { display: block; }
+.love-card.open button { background: #58304e; }
+.love-end {
+  text-align: center;
+  margin-top: 40px;
+  color: #ffd0e2;
+  font-size: 22px;
+}
+@media (max-width: 520px) {
+  .love-grid { grid-template-columns: 1fr; gap: 14px; }
+  .love-card:nth-child(even) { transform: none; }
+  .love-card { padding: 19px; }
+}
+</style>
+
+
+<!-- COUPLE3D_LANDING_MUSIC_V1 -->
+<style>
+#c3d-welcome {
+  position:fixed; inset:0; z-index:99999;
+  display:flex; align-items:center; justify-content:center;
+  padding:24px; overflow:auto; text-align:center; color:#fff;
+  background:
+    radial-gradient(ellipse at 20% 20%,#87345e88,transparent 45%),
+    radial-gradient(ellipse at 80% 80%,#54246e99,transparent 45%),
+    linear-gradient(145deg,#170c20,#351329 55%,#100c1b);
+  transition:opacity .65s ease, visibility .65s ease;
+}
+#c3d-welcome.c3d-leaving {opacity:0;visibility:hidden;pointer-events:none}
+.c3d-welcome-inner {width:min(100%,520px);margin:auto}
+.c3d-kicker {letter-spacing:4px;text-transform:uppercase;font-size:11px;color:#f5b9d2}
+.c3d-heart {font-size:58px;margin:20px 0;animation:c3d-pulse 1.8s infinite}
+#c3d-welcome h1 {font-size:clamp(34px,9vw,58px);line-height:1.2;margin:12px 0;color:#ffe6f0}
+#c3d-welcome p {font-size:16px;line-height:1.9;color:#f7dce8}
+#c3d-celebrate {
+  margin-top:22px;padding:16px 34px;border:1px solid #ffd6e8;
+  border-radius:999px;background:linear-gradient(110deg,#ff679f,#b84b91);
+  color:white;font-size:17px;font-weight:700;letter-spacing:.5px;
+  box-shadow:0 8px 35px #f45d9d55;cursor:pointer
+}
+#c3d-celebrate:active {transform:scale(.97)}
+#c3d-music-control {
+  position:fixed;right:16px;bottom:18px;z-index:99990;
+  border:1px solid #ffffff55;border-radius:999px;padding:12px 17px;
+  background:#32172bea;color:white;font-size:14px;
+  box-shadow:0 5px 24px #0004;cursor:pointer
+}
+@keyframes c3d-pulse {0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media(prefers-reduced-motion:reduce){.c3d-heart{animation:none}#c3d-welcome{transition:none}}
+</style>
+
+
+<!-- COUPLE3D_PHOTO_GALLERY -->
+<style id="couple3d-gallery-style">
+.gallery-section {
+  width: min(100% - 28px, 1100px);
+  margin: 48px auto;
+  color: #fff4f8;
+}
+.gallery-heading { text-align:center; margin-bottom:24px; }
+.gallery-heading h2 {
+  color:#ffd0e2;
+  font-size:clamp(25px,5vw,38px);
+  margin:0 0 10px;
+}
+.gallery-heading p { line-height:1.8; opacity:.82; }
+.c3d-photo-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.c3d-photo-card {
+  margin:0;
+  padding:8px 8px 13px;
+  border:1px solid #ffc0dc66;
+  border-radius:17px;
+  background:linear-gradient(145deg,#69294f,#24152d);
+  box-shadow:0 12px 28px #0005;
+  transform:rotate(-1deg);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.c3d-photo-card:nth-child(3n+2) { transform:rotate(1.3deg); }
+.c3d-photo-card:nth-child(4n) { transform:rotate(-1.5deg); }
+.c3d-photo-card:hover {
+  transform:translateY(-4px) rotate(0);
+  box-shadow:0 16px 34px #0008;
+}
+.c3d-photo-open {
+  display:block;
+  width:100%;
+  padding:0;
+  border:0;
+  background:transparent;
+  cursor:zoom-in;
+}
+.c3d-photo-open img {
+  display:block;
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border-radius:10px;
+  background:#24152d;
+}
+.c3d-photo-card figcaption {
+  text-align:center;
+  padding-top:11px;
+  color:#ffd7e7;
+  font-size:14px;
+}
+#c3d-photo-lightbox {
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:#08030af2;
+}
+#c3d-photo-lightbox.c3d-lightbox-open { display:flex; }
+.c3d-lightbox-inner {
+  position:relative;
+  width:min(100%,850px);
+  max-height:92vh;
+  text-align:center;
+}
+#c3d-large-photo {
+  display:block;
+  max-width:100%;
+  max-height:80vh;
+  width:auto;
+  height:auto;
+  margin:auto;
+  object-fit:contain;
+  border:3px solid #ffd0e2;
+  border-radius:13px;
+  box-shadow:0 15px 60px #0009;
+}
+#c3d-photo-caption { color:#ffe1ed; margin:12px 0 0; }
+#c3d-photo-close {
+  position:absolute;
+  top:-14px;
+  right:-5px;
+  width:43px;
+  height:43px;
+  border:1px solid #ffffff88;
+  border-radius:50%;
+  background:#632348;
+  color:white;
+  font-size:25px;
+  cursor:pointer;
+}
+@media(max-width:650px) {
+  .c3d-photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .c3d-photo-card { padding:6px 6px 10px; }
+  .c3d-photo-card figcaption { font-size:12px; }
+  #c3d-photo-lightbox { padding:12px; }
+  #c3d-photo-close { top:-12px; right:0; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .c3d-photo-card { transition:none; }
+}
+</style>
+
+</head>
+
+<body>
+
+<section class="hero">
+
+  <div class="heart">❤️</div>
+
+  <h1>Our Love Story</h1>
+
+  <div class="subtitle">
+    A little world made just for us
+  </div>
+
+  <div class="viewer">
+
+    <model-viewer
+      src="models/couple.glb"
+      alt="Our Couple 3D Statue"
+      camera-controls
+      rotation-per-second="20deg"
+      shadow-intensity="0"
+      exposure="1"
+      environment-image="neutral"
+      interaction-prompt="auto"
+      touch-action="pan-y">
+    </model-viewer>
+
+  </div>
+
+  <div class="hint">
+    👆 Drag to rotate • Pinch to zoom
+  </div>
+
+  <div class="message">
+    <h2>To My Love ❤️</h2>
+    <p>
+      Every beautiful memory we share is a part of our story.
+      This little place was created to celebrate us,
+      our memories, and the love between us.
+    </p>
+  </div>
+
+</section>
+
+
+
+<!-- COUPLE3D_PHOTO_GALLERY -->
+<section class="gallery-section" id="our-memories">
+  <div class="gallery-heading">
+    <h2>📸 Our Beautiful Memories ❤️</h2>
+    <p>አብረን ያሳለፍናቸው ውድ ትዝታዎች። ፎቶዎቹን ነክተሽ በትልቅ መልኩ ተመልከቺ። 💕</p>
+  </div>
+  <div class="c3d-photo-grid">
+
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo1.jpg" data-caption="Our Memory 01"
+        aria-label="View photo 1">
+        <img src="photos/photo1.jpg" alt="Our love memory 1"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 01</figcaption>
+    </figure>
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo2.jpg" data-caption="Our Memory 02"
+        aria-label="View photo 2">
+        <img src="photos/photo2.jpg" alt="Our love memory 2"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 02</figcaption>
+    </figure>
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo3.jpg" data-caption="Our Memory 03"
+        aria-label="View photo 3">
+        <img src="photos/photo3.jpg" alt="Our love memory 3"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 03</figcaption>
+    </figure>
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo4.jpg" data-caption="Our Memory 04"
+        aria-label="View photo 4">
+        <img src="photos/photo4.jpg" alt="Our love memory 4"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 04</figcaption>
+    </figure>
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo5.jpg" data-caption="Our Memory 05"
+        aria-label="View photo 5">
+        <img src="photos/photo5.jpg" alt="Our love memory 5"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 05</figcaption>
+    </figure>
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo6.jpg" data-caption="Our Memory 06"
+        aria-label="View photo 6">
+        <img src="photos/photo6.jpg" alt="Our love memory 6"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 06</figcaption>
+    </figure>
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo7.jpg" data-caption="Our Memory 07"
+        aria-label="View photo 7">
+        <img src="photos/photo7.jpg" alt="Our love memory 7"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 07</figcaption>
+    </figure>
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo8.jpg" data-caption="Our Memory 08"
+        aria-label="View photo 8">
+        <img src="photos/photo8.jpg" alt="Our love memory 8"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 08</figcaption>
+    </figure>
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo9.jpg" data-caption="Our Memory 09"
+        aria-label="View photo 9">
+        <img src="photos/photo9.jpg" alt="Our love memory 9"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 09</figcaption>
+    </figure>
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo91.jpg" data-caption="Our Memory 10"
+        aria-label="View photo 10">
+        <img src="photos/photo91.jpg" alt="Our love memory 10"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 10</figcaption>
+    </figure>
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo92.jpg" data-caption="Our Memory 11"
+        aria-label="View photo 11">
+        <img src="photos/photo92.jpg" alt="Our love memory 11"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 11</figcaption>
+    </figure>
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo93.jpg" data-caption="Our Memory 12"
+        aria-label="View photo 12">
+        <img src="photos/photo93.jpg" alt="Our love memory 12"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 12</figcaption>
+    </figure>
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo94.jpg" data-caption="Our Memory 13"
+        aria-label="View photo 13">
+        <img src="photos/photo94.jpg" alt="Our love memory 13"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 13</figcaption>
+    </figure>
+    <figure class="c3d-photo-card">
+      <button class="c3d-photo-open" type="button"
+        data-photo="photos/photo95.jpg" data-caption="Our Memory 14"
+        aria-label="View photo 14">
+        <img src="photos/photo95.jpg" alt="Our love memory 14"
+          loading="lazy" decoding="async">
+      </button>
+      <figcaption>❤️ Our Memory 14</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div id="c3d-photo-lightbox" role="dialog"
+  aria-modal="true" aria-label="Enlarged memory photo">
+  <div class="c3d-lightbox-inner">
+    <button id="c3d-photo-close" type="button"
+      aria-label="Close photo">×</button>
+    <img id="c3d-large-photo" src="" alt="Enlarged love memory">
+    <p id="c3d-photo-caption"></p>
+  </div>
+</div>
+
+<section class="love-section" id="love-messages">
+  <div class="love-heading">
+    <h2>💌 ለአንቺ ብቻ፣ የኔ ፍቅር</h2>
+    <p>ስድስት ልዩ መልዕክቶች። እያንዳንዱን ሳጥን ነክተሽ ክፈቺ። ❤️</p>
+  </div>
+
+  <div class="love-grid">
+    <article class="love-card">
+      <span class="love-number">01 · ከልቤ 💖</span>
+      <h3>አፈቅርሻለሁ!</h3>
+      <button type="button" aria-expanded="false">መልዕክቱን ክፈት ♡</button>
+      <div class="love-message">
+        እጅግ በጣም አፈቅርሻለሁ! 💖 ዛሬ በልደትሽ ቀን ላመሰግንሽ እወዳለሁ። በጣም አስቸጋሪ ቀናትን አብረን አልፈናል፤ ተለያይተን በነበረበት ጊዜም እንኳ ታግሰሽኝ፣ አምነሽኝ እና ጠብቀሽኝ ፍቅራችንን አቆይተሻል። ያ ሁሉ ትዕግስትሽና ፍቅርሽ ለእኔ ትልቅ ትርጉም አለው፤ ከፍቅሬም በላይ አከብርሻለሁ። 🥺🙏
+      </div>
+    </article>
+
+    <article class="love-card">
+      <span class="love-number">02 · የህይወቴ ብርሃን ☀️</span>
+      <h3>የኔ ብርሃን</h3>
+      <button type="button" aria-expanded="false">መልዕክቱን ክፈት ♡</button>
+      <div class="love-message">
+        አንቺ የህይወቴ ብርሃን፣ የጥንካሬያችን መሠረት ነሽ። ፀሐይ ህይወትን እንደምታሞቅ ሁሉ፣ አንቺም የኔን ህይወት በፍቅርሽ ሞልተሽዋል። ከጎኔ በመሆንሽ አመሰግንሻለሁ። ☀️✨
+      </div>
+    </article>
+
+    <article class="love-card">
+      <span class="love-number">03 · የልደት ምኞት 🌹</span>
+      <h3>መልካም ልደት፣ የኔ ልዩ ሰው!</h3>
+      <button type="button" aria-expanded="false">መልዕክቱን ክፈት ♡</button>
+      <div class="love-message">
+        ዛሬ በልደትሽ ቀን ፈጣሪ የልብሽን ምኞት ሁሉ እንዲያሳካልሽ፣ ጤናንና ማለቂያ የሌለውን ደስታ እንዲሰጥሽ ከልብ እመኛለሁ። መልካም ልደት ይሁንልሽ፣ የኔ ልዩ ሰው! 🌹🥂💕
+      </div>
+    </article>
+
+    <article class="love-card">
+      <span class="love-number">04 · ርቀትን ያሸነፈ ፍቅር 🫶</span>
+      <h3>ርቀት አይለየንም</h3>
+      <button type="button" aria-expanded="false">መልዕክቱን ክፈት ♡</button>
+      <div class="love-message">
+        በመካከላችን ርቀት ቢኖርም፣ ልቤ ሁሌም ከአንቺ ጋር ነው። የማሳልፈው እያንዳንዱ ቀን አንድ ቀን ከጎንሽ የምሆንበትን ጊዜ ያቀርብልኛል። ትዕግስትሽን አደንቃለሁ፤ ፍቅራችንንም ሁሌም እጠብቃለሁ። 💞
+      </div>
+    </article>
+
+    <article class="love-card">
+      <span class="love-number">05 · ዛሬና ነገ 💗</span>
+      <h3>በየቀኑ የበለጠ አፈቅርሻለሁ</h3>
+      <button type="button" aria-expanded="false">መልዕክቱን ክፈት ♡</button>
+      <div class="love-message">
+        ፍቅሬ በቃላት ብቻ የሚገለጽ አይደለም፤ በምሠራው፣ በምንከባከብሽና ከጎንሽ በምቆምበት መንገድ ላሳይሽ እፈልጋለሁ። ዛሬ አፈቅርሻለሁ፤ ነገም እንዲሁ አፈቅርሻለሁ። ለእኔ ልዩ ነሽ። 💗
+      </div>
+    </article>
+
+    <article class="love-card">
+      <span class="love-number">06 · ለአዲሱ ዓመትሽ 🎂</span>
+      <h3>ደስታና በረከት ይሙላሽ</h3>
+      <button type="button" aria-expanded="false">መልዕክቱን ክፈት ♡</button>
+      <div class="love-message">
+        የኔ ፍቅር፣ አዲሱ የልደት ዓመትሽ በጤና፣ በሰላም፣ በበረከትና በብዙ ደስታ ይሙላ። የልብሽ ምኞቶች ይሳኩ፣ ፈገግታሽም ፊትሽን አይለይ። ከምንም በላይ ደስተኛ ስትሆኚ ማየት እፈልጋለሁ። መልካም ልደት፣ የኔ ውድ! 🎂💐❤️
+      </div>
+    </article>
+  </div>
+
+  <div class="love-end">አንቺ የኔ ልዩ ሰው ነሽ ❤️ ∞</div>
+</section>
+
+<script id="couple3d-love-script">
+document.querySelectorAll("#love-messages .love-card button").forEach(function(button) {
+  button.addEventListener("click", function() {
+    var card = button.closest(".love-card");
+    var opened = card.classList.toggle("open");
+    button.setAttribute("aria-expanded", String(opened));
+    button.textContent = opened ? "መልዕክቱን ዝጋ ♡" : "መልዕክቱን ክፈት ♡";
+  });
+});
+</script>
+
+
+<div id="c3d-welcome">
+  <div class="c3d-welcome-inner">
+    <div class="c3d-kicker">A LITTLE SURPRISE FOR YOU</div>
+    <div class="c3d-heart">💖</div>
+    <h1>Happy Birthday,<br>My Love</h1>
+    <p>
+      ለኔ ልዩ ለሆንሽ ሰው፣<br>
+      ይህን ትንሽ የፍቅር ስጦታ በሙሉ ልቤ አዘጋጅቼልሻለሁ።<br>
+      ዝግጁ ነሽ? ❤️
+    </p>
+    <button id="c3d-celebrate" type="button">Celebrate 🎉</button>
+    <p style="font-size:12px;opacity:.75">Made with love, just for you</p>
+  </div>
+</div>
+
+<audio id="c3d-love-song" src="music/love-song.mp3" preload="auto" loop></audio>
+<button id="c3d-music-control" type="button" hidden>▶ Play music</button>
+
+<script>
+(function () {
+  var welcome = document.getElementById("c3d-welcome");
+  var audio = document.getElementById("c3d-love-song");
+  var celebrate = document.getElementById("c3d-celebrate");
+  var musicButton = document.getElementById("c3d-music-control");
+
+  function updateMusicButton() {
+    musicButton.textContent = audio.paused ? "▶ Play music" : "⏸ Pause music";
+  }
+
+  celebrate.addEventListener("click", function () {
+    welcome.classList.add("c3d-leaving");
+    musicButton.hidden = false;
+
+    var result = audio.play();
+    if (result && result.catch) {
+      result.catch(function () {
+        musicButton.textContent = "▶ Tap to play music";
+      });
+    }
+    updateMusicButton();
+
+    window.setTimeout(function () {
+      welcome.style.display = "none";
+    }, 700);
+  });
+
+  musicButton.addEventListener("click", function () {
+    if (audio.paused) {
+      audio.play().then(updateMusicButton).catch(function () {
+        musicButton.textContent = "▶ Tap to play music";
+      });
+    } else {
+      audio.pause();
+      updateMusicButton();
+    }
+  });
+
+  audio.addEventListener("play", updateMusicButton);
+  audio.addEventListener("pause", updateMusicButton);
+})();
+</script>
+
+
+<script id="couple3d-gallery-script">
+(function () {
+  var lightbox = document.getElementById("c3d-photo-lightbox");
+  var largePhoto = document.getElementById("c3d-large-photo");
+  var caption = document.getElementById("c3d-photo-caption");
+  var closeButton = document.getElementById("c3d-photo-close");
+  var lastButton = null;
+
+  function closePhoto() {
+    lightbox.classList.remove("c3d-lightbox-open");
+    largePhoto.src = "";
+    document.body.style.overflow = "";
+    if (lastButton) lastButton.focus();
+  }
+
+  document.querySelectorAll(".c3d-photo-open").forEach(function (button) {
+    button.addEventListener("click", function () {
+      lastButton = button;
+      largePhoto.src = button.dataset.photo;
+      caption.textContent = button.dataset.caption;
+      lightbox.classList.add("c3d-lightbox-open");
+      document.body.style.overflow = "hidden";
+      closeButton.focus();
+    });
+  });
+
+  closeButton.addEventListener("click", closePhoto);
+
+  lightbox.addEventListener("click", function (event) {
+    if (event.target === lightbox) closePhoto();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" &&
+        lightbox.classList.contains("c3d-lightbox-open")) {
+      closePhoto();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
